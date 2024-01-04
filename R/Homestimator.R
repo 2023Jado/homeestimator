@@ -40,9 +40,9 @@ homestim <- function(b,crs_n, h, p, unit_area, mo, ye) {
   vud_points <- getvolumeUD(kud_points)
 
   # Estimate the homerange from the utilization distribution
-  homerange <- getverticeshr(kud_points, p, unout=unit_area) %>%
-    kernel.area(homerange, p, unout = unit_area) %>%
-    as.data.frame(homerange)
+  homerange <- getverticeshr(kud_points, p, unout=unit_area)
+  home1 <- kernel.area(kud_points, p, unout = unit_area)
+  home2 <- as.data.frame(homerange)
 
   #Plotting
   image(vud_points)
