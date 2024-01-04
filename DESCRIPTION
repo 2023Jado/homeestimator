@@ -1,0 +1,19 @@
+Package: homestimator
+Type: Package
+Title: What the Package Does (Home range estimation)
+Version: 0.1.0
+Author: Jean de Dieu Tuyizere
+Maintainer: The package maintainer <tuyizjado1994@gmail.com>
+Description: More about what it does (the package estimates the habitat use by referring to kernel density estimator)
+    It requires the installation of the following packages(sp, sf, ade4, adehabitatMA, CircStats, adehabitatLT, adehabitatHR).
+    homestim(b, crs_n, y, x, unit_area, mo, ye).
+    b is your file with (longitude, latitude, and groups)
+    crs_n is the espg code.
+    h is the bandwidth or smoothing parameter.
+    p is the kernel density estimator probability (e.g., 50%, 90%, etc).
+    unit_area is the unit that you want to have for your output area (km2, m2, etc).
+    mo is the month for your data.
+    ye is the year for your data.
+License: license()
+Encoding: UTF-8
+LazyData: true

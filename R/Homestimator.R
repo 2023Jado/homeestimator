@@ -1,0 +1,49 @@
+# The package estimates the habitat usage by referring to kernel density estimator.
+#
+# You can learn more about package authoring with RStudio at:
+#
+#   http://r-pkgs.had.co.nz/
+#
+# Some useful keyboard shortcuts for package authoring:
+#
+#   Install Package:           'Ctrl + Shift + B'
+#   Check Package:             'Ctrl + Shift + E'
+#   Test Package:              'Ctrl + Shift + T'
+
+homestim <- function(b,crs_n, h, p, unit_area, mo, ye) {
+  names(b) <- c("x", "y", "id")
+
+  library(sp)
+  library(sf)
+  library(ade4)
+  library(adehabitatMA)
+  library(CircStats)
+  library(adehabitatLT)
+  library(adehabitatHR)
+
+  # Use sp library to assign coordinates and projection
+  coordinates(b) <- c("x", "y")
+
+  # Assign a crs projection
+  sf_file <- st_as_sf(b, coords=c("x", "y"), crs = crs_n)
+  sf_points <- as(sf_file, "Spatial")
+
+  #Calculations
+
+  # Estimating the utilization distribution using "reference" bandwidth
+  kud_points <- kernelUD(sf_points, h=h)
+
+  # Display the utilization distribution
+  image(kud_points)
+
+  #Get the Volume
+  vud_points <- getvolumeUD(kud_points)
+
+  # Estimate the homerange from the utilization distribution
+  homerange <- getverticeshr(kud_points, p, unout=unit_area) %>%
+    as.data.frame(homerange)
+  homerange$Month <- mo
+  homerange$Year <- ye
+  homerange
+  return(homerange)
+}
