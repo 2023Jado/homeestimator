@@ -38,6 +38,7 @@ homestim <- function(b,crs_n, h, p, unit_area, mo, ye) {
 
   #Get the Volume
   vud_points <- getvolumeUD(kud_points)
+  image(vud_points)
 
   # Estimate the homerange from the utilization distribution
   homerange <- getverticeshr(kud_points, p, unout=unit_area) %>%
