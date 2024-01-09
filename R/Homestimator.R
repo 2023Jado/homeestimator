@@ -12,10 +12,10 @@ homestim <- function(b,crs_n, h, p, unit_area, mo, ye) {
   library(adehabitatHR)
 
   # Use sp library to assign coordinates and projection
-  coordinates(re1) <- c("x", "y")
+  coordinates(b) <- c("x", "y")
 
   # Assign a crs projection
-  sf_file <- st_as_sf(re1, coords=c("x", "y"), crs = crs_n)
+  sf_file <- st_as_sf(b, coords=c("x", "y"), crs = crs_n)
   sf_points <- as(sf_file, "Spatial")
   #Calculations
 
