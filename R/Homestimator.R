@@ -49,11 +49,11 @@ homestim <- function(b,crs_n, h, p, unit_area, mo, ye) {
   library(magrittr)
 
   # Display the area_km2 by group
-  ggpl <- ggplot(home2, aes(x = id, y = area,)) +
-    geom_point(size = 5) +
+  ggpl <- ggplot(home2, aes(x = id, y = area)) +
+    geom_point(size = 4) +
     labs(title = paste("Area used by gorilla groups in", homerange$Month, homerange$Year),
          x = "Groups",
-         y = "Area (km2)")
+         y = "Area (km2)") + theme(plot.title = element_text(hjust = 0.5))
   plot(ggpl)
 
   return(homerange)
